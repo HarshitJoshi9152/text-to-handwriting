@@ -16,7 +16,8 @@ async function convertDIVToImage() {
   const options = {
     scrollX: 0,
     scrollY: -window.scrollY,
-    scale: 2
+    scale: document.querySelector('#resolution').value,
+    useCORS: true
   };
 
   /** Function html2canvas comes from a library html2canvas which is included in the index.html */
@@ -43,7 +44,7 @@ async function convertDIVToImage() {
  */
 export async function generateImages() {
   applyPaperStyles();
-  pageEl.scrollTo(0, 0);
+  pageEl.scroll(0, 0);
 
   const paperContentEl = document.querySelector('.page-a .paper-content');
   const scrollHeight = paperContentEl.scrollHeight;
@@ -92,6 +93,18 @@ export async function generateImages() {
   renderOutput(outputImages);
   setRemoveImageListeners();
 }
+
+/**
+ * Delete all generated images
+ */
+
+export const deleteAll = () => {
+  outputImages.splice(0, outputImages.length);
+  renderOutput(outputImages);
+  document.querySelector('#output-header').textContent =
+    'Output' +
+    (outputImages.length ? ' ( ' + outputImages.length + ' )' : '');
+};
 
 /**
  * Downloads generated images as PDF

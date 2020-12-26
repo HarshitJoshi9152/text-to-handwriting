@@ -17,9 +17,11 @@
       gtag('config', 'UA-125454191-4');
     </script>
 
-    <meta charset="UTF-8" />
+	  <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Basic -->
+    <meta charset="UTF-8" />
     <meta name="theme-color" content="#09f" />
     <meta
       name="description"
@@ -62,6 +64,8 @@
     <meta name="twitter:creator" content="@saurabhcodes" />
 
     <title>Text to Handwriting</title>
+
+	  <!-- Favicons -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -79,11 +83,17 @@
       sizes="16x16"
       href="images/favicon-16x16.png"
     />
-    <link rel="manifest" href="./manifest.json" />
+
+	  <!-- PWA Migration -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+	  <!-- Load Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap"
     />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/features.css" />
   </head>
@@ -112,18 +122,26 @@
       </button>
       <h1>Text to Handwriting</h1>
       <section style="font-size: 1rem; padding: 20px 0px;">
-        <p>
-          Hello There! I hope you all are doing good, If you've visited this
-          site before, you would notice that WE HAVE A NEW UI NOW 🎉
-          <br /><br />
-          If you have any half complete assignment that requires old page size,
-          you can use old website from
-          <a
-            href="https://5ef4fa628869820007c63219--text-to-handwriting.netlify.app/"
-            >Our Netlify History</a
-          >
-          <br /><br /><br />
-        </p>
+        <div>
+          Hey everyone! Thank you for supporting Text to Handwriting 🎉
+          <ul class="info-ul">
+            <li>
+              If you want to use additional fonts, you can check out comments in
+              <a
+                href="https://github.com/saurabhdaware/text-to-handwriting/issues/78"
+                >text-to-handwriting issue#78</a
+              >. After downloading the .ttf or .otf file of font, you can import
+              it with "Upload your Handwriting Font" button.
+            </li>
+            <li>
+              I made this tool for fun and didn't expect the response I'm
+              getting right now. Since this tool is not my full-time job, I may
+              be late responding for the feature requests and emails regarding
+              this tool.
+            </li>
+          </ul>
+          <br />
+        </div>
       </section>
       <section class="generate-image-section">
         <form id="generate-image-form">
@@ -205,6 +223,7 @@
                       >
                         Homemade Apple
                       </option>
+                      <option value="Hindi_Font">Kruti-dev(Hindi)</option>
                       <option
                         style="font-family: 'Caveat', cursive; font-size: 13pt;"
                         value="'Caveat', cursive"
@@ -275,6 +294,16 @@
                       <option value="no-effect">No Effect</option>
                     </select>
                   </div>
+                  <div>
+                    <label class="block" for="resolution">Resolution</label>
+                    <select id="resolution">
+                      <option value="0.8">Very Low</option>
+                      <option value="1">Low</option>
+                      <option selected value="2">Normal</option>
+                      <option value="3">High</option>
+                      <option value="4">Very High</option>
+                    </select>
+                  </div>
                 </div>
               </fieldset>
 
@@ -340,25 +369,17 @@
                     </label>
                   </div>
                   <div class="experimental">
-                    <label for="paper-curve-toggle"
-                      >Paper Curve:
-                      <span aria-label="paper curve status" class="status"
-                        >off</span
+                    <!-- Removed option -->
+                    <div class="upload-paper-container">
+                      <label class="block" for="paper-file"
+                        >Upload Paper Image as Background</label
                       >
-                    </label>
-                    <label
-                      title="Paper Curve (Yet to be implemented)"
-                      class="switch-toggle outer"
-                      style="cursor: not-allowed !important;"
-                    >
                       <input
-                        aria-checked="false"
-                        aria-label="Paper Curve Button"
-                        id="paper-curve-toggle"
-                        type="checkbox"
+                        accept=".jpg, .jpeg, .png"
+                        type="file"
+                        id="paper-file"
                       />
-                      <div></div>
-                    </label>
+                    </div>
                   </div>
                 </div>
               </fieldset>
@@ -393,6 +414,9 @@
         <div style="text-align: center; padding: 30px;">
           <button class="imp-button" id="download-as-pdf-button">
             Download All Images as PDF
+          </button>
+          <button class="delete-button" id="delete-all-button">
+            Clear all images
           </button>
         </div>
       </section>
@@ -430,6 +454,12 @@
           money so maybe you can consider being patron or making an one time
           payment with buy me a coffee to help sustain 🤗
         </p>
+        <div class="sponsor-name-section">
+          <a href="https://abelljs.org" class="sponsor-container">
+            <img width="150" src="https://abelljs.org/static/icons/abell.svg" />
+            <span class="sponsor-title">Abell.js</span>
+          </a>
+        </div>
         <p>
           <a href="https://www.patreon.com/bePatron?u=31891872">
             <img
@@ -465,13 +495,42 @@
           >, if you want to contribute.
         </div>
       </section>
+
+      <section id="faq">
+        <h2>❓ FAQs (Frequently Asked Questions)</h2>
+        <div>
+          <h3>1. How can I add my own Handwriting?</h3>
+          <p>
+            Check out
+            <a href="#how-to-add-handwriting"
+              >Guide to add your own Handwriting</a
+            >
+          </p>
+        </div>
+        <div>
+          <h3>2. Where can I get more fonts?</h3>
+          <p>
+            You can use fonts from
+            <a
+              href="https://www.quantumenterprises.co.uk/handwriting-fonts/fontvault.htm"
+              >https://www.quantumenterprises.co.uk/handwriting-fonts/fontvault.htm</a
+            >
+          </p>
+        </div>
+        <div>
+          <h3>3. There are gaps between letters in custom fonts</h3>
+          <p>
+            This is a known issue that we haven't figured out the solution for.
+            As a temporary workaround, there is letter spacing and word spacing
+            option to adjust the gap.
+          </p>
+        </div>
+      </section>
     </main>
     <footer style="padding: 40px 0px 10px 0px;">
       Thank you for using Text to Handwriting! If you have any
       questions/suggestions/feedback, you can drop me a message on
-      <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a> or
-      drop an email at
-      <a href="mailto:saurabhdaware99@gmail.com">saurabhdaware99@gmail.com</a>.
+      <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a>
       <br /><br />Do star the
       <a href="https://github.com/saurabhdaware/text-to-handwriting"
         >Text-to-Handwriting GitHub Repository</a
